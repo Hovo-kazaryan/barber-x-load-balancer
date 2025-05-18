@@ -15,8 +15,9 @@ export class UsersService {
       );
       return response;
     } catch (error) {
-      console.error('❌ Error from consumer:', error);
-      return { error: true, message: error };
+      if (error?.statusCode) {
+        throw error;
+      }
     }
   }
 }
